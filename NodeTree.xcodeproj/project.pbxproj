@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		310249E91C0D8E4E00356E82 /* NodesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 310249E81C0D8E4E00356E82 /* NodesManager.m */; };
+		310249EC1C0D9A3100356E82 /* ContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 310249EB1C0D9A3100356E82 /* ContainerView.m */; };
+		310249EE1C0D9B0300356E82 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310249ED1C0D9B0300356E82 /* QuartzCore.framework */; };
+		310249F11C0D9DCE00356E82 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 310249F01C0D9DCE00356E82 /* Line.m */; };
 		317EF49F1C0BF86E00480BAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 317EF49E1C0BF86E00480BAD /* main.m */; };
 		317EF4A21C0BF86E00480BAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 317EF4A11C0BF86E00480BAD /* AppDelegate.m */; };
 		317EF4A51C0BF86E00480BAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317EF4A41C0BF86E00480BAD /* ViewController.m */; };
@@ -41,6 +44,11 @@
 /* Begin PBXFileReference section */
 		310249E71C0D8E4E00356E82 /* NodesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodesManager.h; sourceTree = "<group>"; };
 		310249E81C0D8E4E00356E82 /* NodesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodesManager.m; sourceTree = "<group>"; };
+		310249EA1C0D9A3100356E82 /* ContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerView.h; sourceTree = "<group>"; };
+		310249EB1C0D9A3100356E82 /* ContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerView.m; sourceTree = "<group>"; };
+		310249ED1C0D9B0300356E82 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		310249EF1C0D9DCE00356E82 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		310249F01C0D9DCE00356E82 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
 		317EF49A1C0BF86E00480BAD /* NodeTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		317EF49E1C0BF86E00480BAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		317EF4A01C0BF86E00480BAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -69,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310249EE1C0D9B0300356E82 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +101,7 @@
 		317EF4911C0BF86E00480BAD = {
 			isa = PBXGroup;
 			children = (
+				310249ED1C0D9B0300356E82 /* QuartzCore.framework */,
 				317EF49C1C0BF86E00480BAD /* NodeTree */,
 				317EF4B91C0BF86E00480BAD /* NodeTreeTests */,
 				317EF4C41C0BF86E00480BAD /* NodeTreeUITests */,
@@ -116,6 +126,10 @@
 				317EF4A11C0BF86E00480BAD /* AppDelegate.m */,
 				317EF4A31C0BF86E00480BAD /* ViewController.h */,
 				317EF4A41C0BF86E00480BAD /* ViewController.m */,
+				310249EA1C0D9A3100356E82 /* ContainerView.h */,
+				310249EB1C0D9A3100356E82 /* ContainerView.m */,
+				310249EF1C0D9DCE00356E82 /* Line.h */,
+				310249F01C0D9DCE00356E82 /* Line.m */,
 				317EF4D61C0C1EDF00480BAD /* NodeView.h */,
 				317EF4D71C0C1EDF00480BAD /* NodeView.m */,
 				317EF4D31C0BF88A00480BAD /* Node.h */,
@@ -288,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310249EC1C0D9A3100356E82 /* ContainerView.m in Sources */,
+				310249F11C0D9DCE00356E82 /* Line.m in Sources */,
 				317EF4D51C0BF88A00480BAD /* Node.m in Sources */,
 				317EF4A51C0BF86E00480BAD /* ViewController.m in Sources */,
 				310249E91C0D8E4E00356E82 /* NodesManager.m in Sources */,

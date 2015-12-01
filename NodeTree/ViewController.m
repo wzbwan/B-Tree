@@ -11,16 +11,18 @@
 #import "NodeView.h"
 #import <math.h>
 #import "NodesManager.h"
-
+#import "ContainerView.h"
 @interface ViewController ()<UIScrollViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong)Node* rootNode;
 @property (weak, nonatomic) IBOutlet UITextField *nodeNameTextField;
 @property (assign)int count;
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
-@property (nonatomic, strong)UIView* containerView;
+@property (nonatomic, strong)ContainerView* containerView;
 @property (nonatomic, strong)UILabel* printLabel;
 @property (assign)float currentZoom; //not use
 @property (assign)CGPoint currentOffSet;// not use
+
+@property (nonatomic, strong)NSMutableArray * nodeViewsArray;
 @end
 
 @implementation ViewController
@@ -56,6 +58,7 @@
 {
     if (self.containerView) {
         [self.containerView removeFromSuperview];
+        [self.nodeViewsArray removeAllObjects];
 //        [self.myScrollView setContentSize:CGSizeMake(self.myScrollView.bounds.size.width, self.myScrollView.bounds.size.height)];
     }
 }
@@ -74,7 +77,8 @@
     float nodeHeight = 50;
     if(leavel == 1){
         NodeView* nodeview = [NodeView createNodeView:self.rootNode andframe:CGRectMake((deviceWidth / 2) - (nodeWidth / 2), nodeHeight, nodeWidth, nodeHeight)];
-        self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.myScrollView.bounds.size.width, self.myScrollView.bounds.size.height)];
+        self.containerView = [[ContainerView alloc] initWithFrame:CGRectMake(0, 0, self.myScrollView.bounds.size.width, self.myScrollView.bounds.size.height)];
+        [self.containerView setBackgroundColor:[UIColor whiteColor]];
         [self.myScrollView addSubview:self.containerView];
         [self.containerView addSubview:nodeview];
         return;
@@ -89,26 +93,57 @@
             spacingEdgeWithNode = (deviceWidth - (((maxPoint * 2) - 1) * nodeWidth)) / 2;
         }
         NSLog(@"containerW %f",containerViewW);
-        self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, containerViewW, containerViewH)];
-        
+        self.containerView = [[ContainerView alloc] initWithFrame:CGRectMake(0, 0, containerViewW, containerViewH)];
+        [self.containerView setBackgroundColor:[UIColor whiteColor]];
         NodeView* rootNodeview = [NodeView createNodeView:self.rootNode andframe:CGRectMake((containerViewW / 2) - (nodeWidth / 2), nodeHeight, nodeWidth, nodeHeight)];
+        [self.nodeViewsArray addObject:rootNodeview];
         [self.containerView addSubview:rootNodeview];
         for (int i = 2; i <= leavel; i++) {
             NSArray * array = [self.rootNode nodesInLeavel:i];
             for (int j = 0; j < [array count]; j++) {
                 Node* node = [array objectAtIndex:j];
                 NodeView* nv = [NodeView createNodeView:node andframe:CGRectMake(((pow(2, leavel - i)) - 1) * nodeWidth + j * (pow(2, (leavel - i + 1))) * nodeWidth + spacingEdgeWithNode, i * nodeHeight, nodeWidth * 2, nodeHeight)];
+                [self.nodeViewsArray addObject:nv];
                 [self.containerView addSubview:nv];
             }
         }
         [self.myScrollView addSubview:self.containerView];
+        [self drawNodesLines];
     }
 }
+
+- (void)drawNodesLines
+{
+    for (NodeView* nv in self.nodeViewsArray) {
+        Node* node = nv.node;
+        if (node.leftNode) {
+            if (node.rightNode) {
+                for (NodeView* leftChild in self.nodeViewsArray) {
+                    if (node.leftNode.nodeID == leftChild.node.nodeID) {
+                        [self.containerView drawLineFrom:[nv getNodeBottomPoint] to:[leftChild getNodeTopPoint]];
+                    }else if (node.rightNode.nodeID == leftChild.node.nodeID){
+                        [self.containerView drawLineFrom:[nv getNodeBottomPoint] to:[leftChild getNodeTopPoint]];
+                    }
+                }
+            }else{
+                for (NodeView* leftChild in self.nodeViewsArray) {
+                    if (node.leftNode.nodeID == leftChild.node.nodeID) {
+                        [self.containerView drawLineFrom:[nv getNodeBottomPoint] to:[leftChild getNodeTopPoint]];
+                    }
+                }
+            }
+            
+        }
+    }
+    [self.containerView drawRect:CGRectMake(0, 0, 0, 0)];
+}
+
+
 
 - (Node*)rootNode
 {
     if (_rootNode == nil) {
-        _rootNode = [Node createNodeWithName:@"0"];
+        _rootNode = [Node createNodeWithName:@"0" andID:0];
     }
     return _rootNode;
 }
@@ -116,13 +151,13 @@
 - (IBAction)addNode:(id)sender {
     if (self.nodeNameTextField.text.length>0) {
         if (self.count == 0) {
-            self.rootNode = [Node createNodeWithName:self.nodeNameTextField.text];
+            self.rootNode = [Node createNodeWithName:self.nodeNameTextField.text andID:0];
         }else{
-            [self.rootNode addChildNode:[Node createNodeWithName:self.nodeNameTextField.text]];
+            [self.rootNode addChildNode:[Node createNodeWithName:self.nodeNameTextField.text andID:self.count]];
         }
     }else{
         if (self.count == 0) {
-            self.rootNode = [Node createNodeWithName:@"0"];
+            self.rootNode = [Node createNodeWithName:@"0" andID:0];
         }else{
             [self.rootNode addChildNode:[Node createNodeWithName:[NSString stringWithFormat:@"%d",(self.count)]]];
         }
@@ -191,5 +226,13 @@
 - (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.containerView;
+}
+
+- (NSMutableArray*)nodeViewsArray
+{
+    if (_nodeViewsArray == nil) {
+        _nodeViewsArray = [[NSMutableArray alloc] init];
+    }
+    return _nodeViewsArray;
 }
 @end

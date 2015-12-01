@@ -14,5 +14,6 @@
 @property(nonatomic, strong)UILabel* nameLabel;
 
 + (instancetype)createNodeView:(Node*)node andframe:(CGRect)frame;
-
+- (CGPoint)getNodeTopPoint;
+- (CGPoint)getNodeBottomPoint;
 @end

@@ -20,6 +20,18 @@
 //    NSLog(@"node:%@ x:%f,y:%f,w:%f,h:%f",node.name,frame.origin.x,frame.origin.y,frame.size.width,frame.size.height);
     return nodeView;
 }
+
+- (CGPoint)getNodeTopPoint
+{
+    CGRect frame = self.frame;
+    return CGPointMake(frame.origin.x + (frame.size.width / 2), frame.origin.y);
+}
+
+- (CGPoint)getNodeBottomPoint
+{
+    CGRect frame = self.frame;
+    return CGPointMake(frame.origin.x + (frame.size.width / 2), frame.origin.y + frame.size.height);
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
