@@ -10,12 +10,17 @@
 #import "Node.h"
 #import "NodeView.h"
 #import <math.h>
+#import "NodesManager.h"
+
 @interface ViewController ()<UIScrollViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong)Node* rootNode;
 @property (weak, nonatomic) IBOutlet UITextField *nodeNameTextField;
 @property (assign)int count;
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (nonatomic, strong)UIView* containerView;
+@property (nonatomic, strong)UILabel* printLabel;
+@property (assign)float currentZoom; //not use
+@property (assign)CGPoint currentOffSet;// not use
 @end
 
 @implementation ViewController
@@ -51,7 +56,7 @@
 {
     if (self.containerView) {
         [self.containerView removeFromSuperview];
-        [self.myScrollView setContentSize:CGSizeMake(self.myScrollView.bounds.size.width, self.myScrollView.bounds.size.height)];
+//        [self.myScrollView setContentSize:CGSizeMake(self.myScrollView.bounds.size.width, self.myScrollView.bounds.size.height)];
     }
 }
 
@@ -79,12 +84,13 @@
 
         if ((((maxPoint * 2) - 1) * nodeWidth) > self.myScrollView.bounds.size.width) {
             containerViewW = (((maxPoint * 2) - 1) * nodeWidth);
+            [self.myScrollView setContentSize:CGSizeMake(containerViewW, containerViewH)];
         }else{
             spacingEdgeWithNode = (deviceWidth - (((maxPoint * 2) - 1) * nodeWidth)) / 2;
         }
         NSLog(@"containerW %f",containerViewW);
         self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, containerViewW, containerViewH)];
-        [self.myScrollView setContentSize:CGSizeMake(containerViewW, containerViewH)];
+        
         NodeView* rootNodeview = [NodeView createNodeView:self.rootNode andframe:CGRectMake((containerViewW / 2) - (nodeWidth / 2), nodeHeight, nodeWidth, nodeHeight)];
         [self.containerView addSubview:rootNodeview];
         for (int i = 2; i <= leavel; i++) {
@@ -132,20 +138,58 @@
 }
 
 - (IBAction)LNR:(id)sender {
-
+    [[[NodesManager sharedNodesManager] nodes] removeAllObjects];
+    [self.rootNode printNodeLNR];
+    [self printNodes];
 }
 
 - (IBAction)NLR:(id)sender {
-
+    [[[NodesManager sharedNodesManager] nodes] removeAllObjects];
+    [self.rootNode printNodeNLR];
+    [self printNodes];
 }
 
 - (IBAction)LRN:(id)sender {
+    [[[NodesManager sharedNodesManager] nodes] removeAllObjects];
+    [self.rootNode printNodeLRN];
+    [self printNodes];
+}
 
+- (void)printNodes
+{
+    if (self.containerView) {
+        NSString* string = @"";
+        for (Node* node in [[NodesManager sharedNodesManager] nodes]) {
+            string = [string stringByAppendingString:[NSString stringWithFormat:@"%@、",node.name]];
+        }
+        int lines = (string.length * 14 / self.containerView.frame.size.width) + 1;
+        if (self.printLabel) {
+            [self.printLabel removeFromSuperview];
+        }
+        self.printLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.containerView.frame.size.width, lines * 30)];
+        self.printLabel.text = string;
+        [self.containerView addSubview:self.printLabel];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return NO;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    self.currentZoom = scrollView.zoomScale;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.currentOffSet = scrollView.contentOffset;
+}
+
+- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.containerView;
 }
 @end

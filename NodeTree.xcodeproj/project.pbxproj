@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310249E91C0D8E4E00356E82 /* NodesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 310249E81C0D8E4E00356E82 /* NodesManager.m */; };
 		317EF49F1C0BF86E00480BAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 317EF49E1C0BF86E00480BAD /* main.m */; };
 		317EF4A21C0BF86E00480BAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 317EF4A11C0BF86E00480BAD /* AppDelegate.m */; };
 		317EF4A51C0BF86E00480BAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317EF4A41C0BF86E00480BAD /* ViewController.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310249E71C0D8E4E00356E82 /* NodesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodesManager.h; sourceTree = "<group>"; };
+		310249E81C0D8E4E00356E82 /* NodesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodesManager.m; sourceTree = "<group>"; };
 		317EF49A1C0BF86E00480BAD /* NodeTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		317EF49E1C0BF86E00480BAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		317EF4A01C0BF86E00480BAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 				317EF4D71C0C1EDF00480BAD /* NodeView.m */,
 				317EF4D31C0BF88A00480BAD /* Node.h */,
 				317EF4D41C0BF88A00480BAD /* Node.m */,
+				310249E71C0D8E4E00356E82 /* NodesManager.h */,
+				310249E81C0D8E4E00356E82 /* NodesManager.m */,
 				317EF4A61C0BF86E00480BAD /* Main.storyboard */,
 				317EF4AC1C0BF86E00480BAD /* Assets.xcassets */,
 				317EF4AE1C0BF86E00480BAD /* LaunchScreen.storyboard */,
@@ -285,6 +290,7 @@
 			files = (
 				317EF4D51C0BF88A00480BAD /* Node.m in Sources */,
 				317EF4A51C0BF86E00480BAD /* ViewController.m in Sources */,
+				310249E91C0D8E4E00356E82 /* NodesManager.m in Sources */,
 				317EF4D81C0C1EDF00480BAD /* NodeView.m in Sources */,
 				317EF4A21C0BF86E00480BAD /* AppDelegate.m in Sources */,
 				317EF49F1C0BF86E00480BAD /* main.m in Sources */,

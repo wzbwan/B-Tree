@@ -8,6 +8,8 @@
 
 #import "Node.h"
 #import <math.h>
+#import "NodesManager.h"
+
 @implementation Node
 + (instancetype)createNodeWithName:(NSString*)name
 {
@@ -147,6 +149,7 @@
 
 - (void)printNodeNLR
 {
+    [[[NodesManager sharedNodesManager] nodes] addObject:self];
     NSLog(@"%@",self.name);
     if (self.leftNode) {
         [self.leftNode printNodeNLR];
@@ -160,12 +163,14 @@
 {
     if ([self isFull]) {
         [self.leftNode printNodeLNR];
+        [[[NodesManager sharedNodesManager] nodes] addObject:self];
         NSLog(@"%@",self.name);
         [self.rightNode printNodeLNR];
     }else if (self.leftNode){
         [self.leftNode printNodeLNR];
     }else{
         NSLog(@"%@",self.name);
+        [[[NodesManager sharedNodesManager] nodes] addObject:self];
     }
 }
 
@@ -177,8 +182,10 @@
             [self.rightNode printNodeLRN];
         }
         NSLog(@"%@",self.name);
+        [[[NodesManager sharedNodesManager] nodes] addObject:self];
     }else{
         NSLog(@"%@",self.name);
+        [[[NodesManager sharedNodesManager] nodes] addObject:self];
     }
 }
 @end
