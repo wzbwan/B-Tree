@@ -201,6 +201,7 @@
             [self.printLabel removeFromSuperview];
         }
         self.printLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.containerView.frame.size.width, lines * 30)];
+        self.printLabel.numberOfLines = lines;
         self.printLabel.text = string;
         [self.containerView addSubview:self.printLabel];
     }
