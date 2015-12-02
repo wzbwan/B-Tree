@@ -12,8 +12,11 @@
 @property(nonatomic, strong)Node* node;
 @property(nonatomic, strong)UIImage* ndoeImage;
 @property(nonatomic, strong)UILabel* nameLabel;
+@property(nonatomic, strong)UIView* animationView;
 
 + (instancetype)createNodeView:(Node*)node andframe:(CGRect)frame;
 - (CGPoint)getNodeTopPoint;
 - (CGPoint)getNodeBottomPoint;
+
+- (void)runBlinkAnimation;
 @end

@@ -21,8 +21,14 @@
 @property (nonatomic, strong)UILabel* printLabel;
 @property (assign)float currentZoom; //not use
 @property (assign)CGPoint currentOffSet;// not use
+@property (weak, nonatomic) IBOutlet UISwitch *animationSwitch;
 
 @property (nonatomic, strong)NSMutableArray * nodeViewsArray;
+@property (nonatomic, strong)NSTimer* animationTimer;
+@property (assign)int animationStep;
+@property (weak, nonatomic) IBOutlet UIButton *LNRBtn;
+@property (weak, nonatomic) IBOutlet UIButton *NLRBtn;
+@property (weak, nonatomic) IBOutlet UIButton *LRNBtn;
 @end
 
 @implementation ViewController
@@ -59,7 +65,6 @@
     if (self.containerView) {
         [self.containerView removeFromSuperview];
         [self.nodeViewsArray removeAllObjects];
-//        [self.myScrollView setContentSize:CGSizeMake(self.myScrollView.bounds.size.width, self.myScrollView.bounds.size.height)];
     }
 }
 
@@ -133,11 +138,7 @@
         }
     }
     [self.containerView setNeedsDisplay];
-//    [self.containerView drawRect:CGRectMake(0, 0, 0, 0)];
-//    [self.containerView drawRect:CGRectMake(0, 0, 0, 0)];
 }
-
-
 
 - (Node*)rootNode
 {
@@ -175,18 +176,62 @@
     [[[NodesManager sharedNodesManager] nodes] removeAllObjects];
     [self.rootNode printNodeLNR];
     [self printNodes];
+    if (self.animationSwitch.isOn) {
+        [self startAnimation];
+    }
+    
 }
 
 - (IBAction)NLR:(id)sender {
     [[[NodesManager sharedNodesManager] nodes] removeAllObjects];
     [self.rootNode printNodeNLR];
     [self printNodes];
+    if (self.animationSwitch.isOn) {
+        [self startAnimation];
+    }
 }
 
 - (IBAction)LRN:(id)sender {
     [[[NodesManager sharedNodesManager] nodes] removeAllObjects];
     [self.rootNode printNodeLRN];
     [self printNodes];
+    if (self.animationSwitch.isOn) {
+        [self startAnimation];
+    }
+}
+
+- (IBAction)animationSwitch:(id)sender {
+    if (self.animationTimer) {
+        [self.animationTimer invalidate];
+        [self setTraversalBtnEnable:YES];
+    }
+}
+
+- (void)timerTick:(NSTimer*)timer
+{
+    if (self.animationStep < [[[NodesManager sharedNodesManager] nodes] count]) {
+        Node* node = [[[NodesManager sharedNodesManager] nodes] objectAtIndex:self.animationStep];
+        for (NodeView* nv in self.nodeViewsArray) {
+            if (nv.node.nodeID == node.nodeID) {
+                [nv runBlinkAnimation];
+            }
+        }
+        self.animationStep++;
+    }else{
+        [timer invalidate];
+        self.animationStep = 0;
+        [self setTraversalBtnEnable:YES];
+    }
+
+}
+
+- (void)startAnimation
+{
+    self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
+    [self.animationTimer fire];
+    self.animationStep = 0;
+    
+    [self setTraversalBtnEnable:NO];
 }
 
 - (void)printNodes
@@ -204,6 +249,19 @@
         self.printLabel.numberOfLines = lines;
         self.printLabel.text = string;
         [self.containerView addSubview:self.printLabel];
+    }
+}
+
+- (void)setTraversalBtnEnable:(BOOL)enable
+{
+    if (enable) {
+        [self.LNRBtn setEnabled:YES];
+        [self.NLRBtn setEnabled:YES];
+        [self.LRNBtn setEnabled:YES];
+    }else{
+        [self.LNRBtn setEnabled:NO];
+        [self.NLRBtn setEnabled:NO];
+        [self.LRNBtn setEnabled:NO];
     }
 }
 
