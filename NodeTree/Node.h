@@ -16,7 +16,7 @@
 @property(nonatomic, strong)NSString* name;
 @property(assign)int nodeID;
 
-+ (instancetype)createNodeWithName:(NSString*)name;
+//+ (instancetype)createNodeWithName:(NSString*)name;
 + (instancetype)createNodeWithName:(NSString *)name andID:(int)nodeID;
 
 - (void)addChildNode:(Node*)child;

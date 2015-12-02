@@ -11,12 +11,12 @@
 #import "NodesManager.h"
 
 @implementation Node
-+ (instancetype)createNodeWithName:(NSString*)name
-{
-    Node* node = [[[self class] alloc] init];
-    node.name = name;
-    return node;
-}
+//+ (instancetype)createNodeWithName:(NSString*)name
+//{
+//    Node* node = [[[self class] alloc] init];
+//    node.name = name;
+//    return node;
+//}
 
 + (instancetype)createNodeWithName:(NSString *)name andID:(int)nodeID
 {

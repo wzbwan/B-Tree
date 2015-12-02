@@ -67,9 +67,7 @@
 {
     [self clearNodeTree];
     int leavel = (int)[self.rootNode leavel];
-    NSLog(@"leavel: %d",leavel);
     int maxPoint = pow(2, leavel-1);
-    NSLog(@"maxPoint: %d",maxPoint);
     float deviceWidth = [UIScreen mainScreen].bounds.size.width;
 //    float spacingNodes = 50;
     float spacingEdgeWithNode = 0;
@@ -92,7 +90,6 @@
         }else{
             spacingEdgeWithNode = (deviceWidth - (((maxPoint * 2) - 1) * nodeWidth)) / 2;
         }
-        NSLog(@"containerW %f",containerViewW);
         self.containerView = [[ContainerView alloc] initWithFrame:CGRectMake(0, 0, containerViewW, containerViewH)];
         [self.containerView setBackgroundColor:[UIColor whiteColor]];
         NodeView* rootNodeview = [NodeView createNodeView:self.rootNode andframe:CGRectMake((containerViewW / 2) - (nodeWidth / 2), nodeHeight, nodeWidth, nodeHeight)];
@@ -135,7 +132,9 @@
             
         }
     }
-    [self.containerView drawRect:CGRectMake(0, 0, 0, 0)];
+    [self.containerView setNeedsDisplay];
+//    [self.containerView drawRect:CGRectMake(0, 0, 0, 0)];
+//    [self.containerView drawRect:CGRectMake(0, 0, 0, 0)];
 }
 
 
@@ -159,7 +158,7 @@
         if (self.count == 0) {
             self.rootNode = [Node createNodeWithName:@"0" andID:0];
         }else{
-            [self.rootNode addChildNode:[Node createNodeWithName:[NSString stringWithFormat:@"%d",(self.count)]]];
+            [self.rootNode addChildNode:[Node createNodeWithName:[NSString stringWithFormat:@"%d",(self.count)] andID:self.count]];
         }
     }
     self.count ++;

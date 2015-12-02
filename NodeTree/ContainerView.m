@@ -7,7 +7,6 @@
 //
 
 #import "ContainerView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "Line.h"
 @implementation ContainerView
 
@@ -18,19 +17,18 @@
     // Drawing code
     if ([self.lines count] > 0) {
         self.cgCRF =UIGraphicsGetCurrentContext();
-        
+        CGContextSetRGBStrokeColor(self.cgCRF, 0, 1.0, 0, 1.0);
+        CGContextSetLineWidth(self.cgCRF, 2);
         for (Line* line in self.lines) {
             CGContextMoveToPoint(self.cgCRF, line.start.x, line.start.y);
             CGContextAddLineToPoint(self.cgCRF, line.end.x,line.end.y);
+            CGContextStrokePath(self.cgCRF);
         }
         //    CGContextMoveToPoint(self.cgCRF, 0, 0);
         //    CGContextAddLineToPoint(self.cgCRF, 100, 100);
-        
-        CGContextSetRGBStrokeColor(self.cgCRF, 0, 1.0, 0, 1.0);
-        CGContextSetLineWidth(self.cgCRF, 2);
-        CGContextSetLineCap(self.cgCRF, kCGLineCapRound);
-        CGContextSetLineJoin(self.cgCRF, kCGLineJoinRound);
-        CGContextStrokePath(self.cgCRF);
+//        CGContextSetLineCap(self.cgCRF, kCGLineCapRound);
+//        CGContextSetLineJoin(self.cgCRF, kCGLineJoinRound);
+
     }
 }
 
