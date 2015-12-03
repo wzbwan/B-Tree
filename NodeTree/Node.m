@@ -168,6 +168,8 @@
         [self.rightNode printNodeLNR];
     }else if (self.leftNode){
         [self.leftNode printNodeLNR];
+        NSLog(@"%@",self.name);
+        [[[NodesManager sharedNodesManager] nodes] addObject:self];
     }else{
         NSLog(@"%@",self.name);
         [[[NodesManager sharedNodesManager] nodes] addObject:self];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20F0A33E1C0F26C700D56394 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F0A33D1C0F26C700D56394 /* AboutViewController.m */; };
 		310249E91C0D8E4E00356E82 /* NodesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 310249E81C0D8E4E00356E82 /* NodesManager.m */; };
 		310249EC1C0D9A3100356E82 /* ContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 310249EB1C0D9A3100356E82 /* ContainerView.m */; };
 		310249EE1C0D9B0300356E82 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310249ED1C0D9B0300356E82 /* QuartzCore.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20F0A33C1C0F26C700D56394 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		20F0A33D1C0F26C700D56394 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		310249E71C0D8E4E00356E82 /* NodesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodesManager.h; sourceTree = "<group>"; };
 		310249E81C0D8E4E00356E82 /* NodesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodesManager.m; sourceTree = "<group>"; };
 		310249EA1C0D9A3100356E82 /* ContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerView.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				317EF4D41C0BF88A00480BAD /* Node.m */,
 				310249E71C0D8E4E00356E82 /* NodesManager.h */,
 				310249E81C0D8E4E00356E82 /* NodesManager.m */,
+				20F0A33C1C0F26C700D56394 /* AboutViewController.h */,
+				20F0A33D1C0F26C700D56394 /* AboutViewController.m */,
 				317EF4A61C0BF86E00480BAD /* Main.storyboard */,
 				317EF4AC1C0BF86E00480BAD /* Assets.xcassets */,
 				317EF4AE1C0BF86E00480BAD /* LaunchScreen.storyboard */,
@@ -235,7 +240,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = shangyilian;
+				ORGANIZATIONNAME = wzbwan;
 				TargetAttributes = {
 					317EF4991C0BF86E00480BAD = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -308,6 +313,7 @@
 				317EF4A51C0BF86E00480BAD /* ViewController.m in Sources */,
 				310249E91C0D8E4E00356E82 /* NodesManager.m in Sources */,
 				317EF4D81C0C1EDF00480BAD /* NodeView.m in Sources */,
+				20F0A33E1C0F26C700D56394 /* AboutViewController.m in Sources */,
 				317EF4A21C0BF86E00480BAD /* AppDelegate.m in Sources */,
 				317EF49F1C0BF86E00480BAD /* main.m in Sources */,
 				317EF4AB1C0BF86E00480BAD /* NodeTree.xcdatamodeld in Sources */,

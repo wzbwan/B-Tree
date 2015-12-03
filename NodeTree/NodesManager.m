@@ -3,7 +3,7 @@
 //  NodeTree
 //
 //  Created by wzb on 15/12/1.
-//  Copyright © 2015年 shangyilian. All rights reserved.
+//  Copyright © 2015年 wzbwan. All rights reserved.
 //
 
 #import "NodesManager.h"
