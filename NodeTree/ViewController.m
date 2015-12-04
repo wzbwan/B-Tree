@@ -12,8 +12,10 @@
 #import <math.h>
 #import "NodesManager.h"
 #import "ContainerView.h"
+#import "AboutViewController.h"
+
 @interface ViewController ()<UIScrollViewDelegate,UITextFieldDelegate>
-@property (nonatomic, strong)Node* rootNode;
+@property (nonatomic, strong)Node* rootNode; // root node
 @property (weak, nonatomic) IBOutlet UITextField *nodeNameTextField;
 @property (assign)int count;
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
@@ -74,7 +76,6 @@
     int leavel = (int)[self.rootNode leavel];
     int maxPoint = pow(2, leavel-1);
     float deviceWidth = [UIScreen mainScreen].bounds.size.width;
-//    float spacingNodes = 50;
     float spacingEdgeWithNode = 0;
     float nodeWidth = 25;
     float nodeHeight = 50;
@@ -140,13 +141,6 @@
     [self.containerView setNeedsDisplay];
 }
 
-- (Node*)rootNode
-{
-    if (_rootNode == nil) {
-        _rootNode = [Node createNodeWithName:@"0" andID:0];
-    }
-    return _rootNode;
-}
 
 - (IBAction)addNode:(id)sender {
     if (self.nodeNameTextField.text.length>0) {
@@ -265,12 +259,25 @@
     }
 }
 
+#pragma mark -IBActions
+
+- (IBAction)aboutView:(id)sender {
+    UIView* view = (UIView*)sender;
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AboutViewController* aboutView = [storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
+    [self addChildViewController:aboutView];
+    [self.view addSubview:aboutView.view];
+    [aboutView runCardComeAnimation:view.center];
+};
+
+#pragma mark - textField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return NO;
 }
 
+#pragma mark - scrollView delegate
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     self.currentZoom = scrollView.zoomScale;
@@ -284,6 +291,15 @@
 - (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.containerView;
+}
+
+#pragma mark -members
+- (Node*)rootNode
+{
+    if (_rootNode == nil) {
+        _rootNode = [Node createNodeWithName:@"0" andID:0];
+    }
+    return _rootNode;
 }
 
 - (NSMutableArray*)nodeViewsArray

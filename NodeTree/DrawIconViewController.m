@@ -10,9 +10,11 @@
 #import "Line.h"
 #import "DrawIconView.h"
 #import "ViewController.h"
+#import "POP.h"
 
+#define LAST_POINT_TAG 99
 @interface DrawIconViewController ()
-
+@property(nonatomic, strong)NSArray* points;
 @end
 
 @implementation DrawIconViewController
@@ -48,6 +50,7 @@
     UIImageView* node5 = [self getCycle:CGPointMake(dd + (12 * hr), hh + h)];
     [self.view addSubview:node5];
     UIImageView* node6 = [self getCycle:CGPointMake(dd + (18 * hr), hh + h)];
+    node6.tag = LAST_POINT_TAG;
     [self.view addSubview:node6];
     
 //    Line* line1 = [Line createLineFrom:root.center to:node1.center];
@@ -58,22 +61,84 @@
 //    Line* line6 = [Line createLineFrom:node2.center to:node6.center];
 //    DrawIconView* view = (DrawIconView*)self.view;
 //    [view getLines:@[line1,line2,line3,line4,line5,line6]];
+    self.points = @[node3,node1,node4,root,node5,node2,node6];
     [self addMoveAnim:root positionY:node1.layer.position.y];
     [self addMoveAnim:node3 positionY:node1.layer.position.y];
     [self addMoveAnim:node4 positionY:node1.layer.position.y];
     [self addMoveAnim:node5 positionY:node1.layer.position.y];
     [self addMoveAnim:node6 positionY:node1.layer.position.y];
-    [self performSelector:@selector(switchToMainView) withObject:nil afterDelay:1];
+//    [self performSelector:@selector(switchToMainView) withObject:nil afterDelay:2];
 }
 
 - (void)addMoveAnim:(UIView*)view positionY:(float)y
 {
-    CABasicAnimation* moveAnim = [CABasicAnimation animationWithKeyPath:@"position"];
-    moveAnim.fromValue = [NSValue valueWithCGPoint:CGPointMake(view.layer.position.x, view.layer.position.y)];
-    moveAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(view.layer.position.x, y)];
-    moveAnim.duration = 1.0f;
-    moveAnim.timingFunction = UIViewAnimationCurveEaseInOut;
-    [view.layer addAnimation:moveAnim forKey:@"move"];
+    POPSpringAnimation* moveAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(y, y)];
+    moveAnim.springBounciness = 18;
+    moveAnim.name = @"moveAnim";
+    moveAnim.delegate = self;
+    [view.layer pop_addAnimation:moveAnim forKey:nil];
+}
+
+- (void)addJumpMoveUpAnim:(UIView*)view
+{
+    POPSpringAnimation* moveAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(view.layer.position.y-40, 0)];
+    moveAnim.name = @"jumpUpAnim";
+    moveAnim.delegate = self;
+    [view.layer pop_addAnimation:moveAnim forKey:nil];
+}
+
+- (void)addJumpMoveDownAnim:(UIView*)view
+{
+    POPSpringAnimation* moveAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(view.layer.position.y+40, 0)];
+    if (view.tag == LAST_POINT_TAG) {
+        moveAnim.name = @"jumpDownAnim";
+        moveAnim.delegate = self;
+    }
+    [view.layer pop_addAnimation:moveAnim forKey:nil];
+}
+
+- (void)runLoadingAnim
+{
+    for (int i = 0; i<[self.points count]; i++) {
+        UIView* view = [self.points objectAtIndex:i];
+        [self performSelector:@selector(addJumpMoveUpAnim:) withObject:view afterDelay:i*.15];
+        [self performSelector:@selector(addJumpMoveDownAnim:) withObject:view afterDelay:i*.05+.2*(i+1)];
+    }
+}
+
+- (void)addScaleRecoverAnima:(UIView*)view
+{
+    POPSpringAnimation* scaleAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
+    if (view.tag == LAST_POINT_TAG) {
+        scaleAnim.delegate = self;
+        scaleAnim.name = @"loading";
+    }
+    [view.layer pop_addAnimation:scaleAnim forKey:nil];
+}
+
+- (void)addScaleHalfAnim:(UIView*)view
+{
+    POPSpringAnimation* scaleAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(.5, .5)];
+//    if (view.tag == LAST_POINT_TAG) {
+//        scaleAnim.delegate = self;
+//        scaleAnim.name = @"loading";
+//    }
+    [view.layer pop_addAnimation:scaleAnim forKey:nil];
+}
+
+- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
+{
+
+    if ([anim.name isEqualToString:@"moveAnim"]) {
+        [self runLoadingAnim];
+    }else if ([anim.name isEqualToString:@"jumpDownAnim"]){
+        [self switchToMainView];
+    }
 }
 
 - (void)switchToMainView

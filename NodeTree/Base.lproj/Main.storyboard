@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2MI-3L-dnn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2MI-3L-dnn">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -69,7 +69,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jW5-Kt-UFt"/>
                                 </constraints>
-                                <state key="normal" title="前序LNR">
+                                <state key="normal" title="LNR">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -82,7 +82,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="shs-FZ-bMp"/>
                                 </constraints>
-                                <state key="normal" title="后序LRN">
+                                <state key="normal" title="LRN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -95,7 +95,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bb4-vq-ftC"/>
                                 </constraints>
-                                <state key="normal" title="中序NLR">
+                                <state key="normal" title="NLR">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -115,6 +115,9 @@
                                     <constraint firstAttribute="height" constant="40" id="zcD-fH-yRY"/>
                                 </constraints>
                                 <state key="normal" image="contact"/>
+                                <connections>
+                                    <action selector="aboutView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5cy-Bq-6x5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -172,6 +175,68 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X5A-2m-8HG">
                                 <rect key="frame" x="160" y="190" width="280" height="220"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lv6-gx-GSj">
+                                        <rect key="frame" x="168" y="38" width="58" height="58"/>
+                                        <state key="normal" image="email"/>
+                                        <connections>
+                                            <action selector="mailLink:" destination="Uqu-nS-XRP" eventType="touchUpInside" id="E1P-Mh-8xL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaw-SZ-YJA">
+                                        <rect key="frame" x="55" y="124" width="58" height="58"/>
+                                        <state key="normal" image="wechat"/>
+                                        <connections>
+                                            <action selector="wechatLink:" destination="Uqu-nS-XRP" eventType="touchUpInside" id="Y6a-V6-CkH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rja-ij-WEa">
+                                        <rect key="frame" x="168" y="124" width="58" height="58"/>
+                                        <state key="normal" image="info"/>
+                                        <connections>
+                                            <action selector="websiteLink:" destination="Uqu-nS-XRP" eventType="touchUpInside" id="5Kc-1D-hId"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="zengbao.wang make" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6B-aE-LuW">
+                                        <rect key="frame" x="8" y="199" width="264" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="source code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeL-FA-43G">
+                                        <rect key="frame" x="34" y="16" width="101" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFS-XW-4z3">
+                                        <rect key="frame" x="147" y="16" width="101" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="wechat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wa0-A7-bLu">
+                                        <rect key="frame" x="34" y="104" width="101" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf5-G7-9hD">
+                                        <rect key="frame" x="147" y="104" width="101" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAD-cH-OgT">
+                                        <rect key="frame" x="55" y="38" width="58" height="58"/>
+                                        <state key="normal" image="github"/>
+                                        <connections>
+                                            <action selector="btnDragExit:" destination="Uqu-nS-XRP" eventType="touchDragExit" id="TVU-SS-sjr"/>
+                                            <action selector="btnTouchDown:" destination="Uqu-nS-XRP" eventType="touchDown" id="rwv-HG-sJc"/>
+                                            <action selector="githubLink:" destination="Uqu-nS-XRP" eventType="touchUpInside" id="OQa-lE-0cU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="B22-7F-BNE"/>
@@ -179,17 +244,30 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="X5A-2m-8HG" firstAttribute="centerY" secondItem="HW2-rb-JB9" secondAttribute="centerY" id="Ubq-jm-K6O"/>
                             <constraint firstItem="X5A-2m-8HG" firstAttribute="centerX" secondItem="HW2-rb-JB9" secondAttribute="centerX" id="ezF-Fg-gep"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AZw-5l-FiB" appends="YES" id="5f6-aA-dbz"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="cardView" destination="X5A-2m-8HG" id="NBa-jh-I3q"/>
+                        <outlet property="tips1Label" destination="qeL-FA-43G" id="tkt-hw-i6E"/>
+                        <outlet property="tips2Label" destination="wFS-XW-4z3" id="8aN-im-fIF"/>
+                        <outlet property="tips3Label" destination="Wa0-A7-bLu" id="XpW-gS-ozz"/>
+                        <outlet property="tips4Label" destination="Lf5-G7-9hD" id="HzF-FU-Iy1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bh4-Qf-uHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="AZw-5l-FiB">
+                    <connections>
+                        <action selector="tap:" destination="Uqu-nS-XRP" id="sLl-1K-6Sa"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="265" y="932"/>
         </scene>
@@ -209,10 +287,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q8B-Eq-tUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="962" y="273"/>
+            <point key="canvasLocation" x="1015" y="273"/>
         </scene>
     </scenes>
     <resources>
         <image name="contact" width="60" height="60"/>
+        <image name="email" width="58" height="58"/>
+        <image name="github" width="58" height="58"/>
+        <image name="info" width="58" height="58"/>
+        <image name="wechat" width="58" height="58"/>
     </resources>
 </document>

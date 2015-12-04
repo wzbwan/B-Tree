@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController
-
+- (void)runCardComeAnimation:(CGPoint)point;
 @end

@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "－"; ObjectID = "0c7-g2-LLT"; */
+"0c7-g2-LLT.normalTitle" = "－";
+
+/* Class = "UIButton"; normalTitle = "＋"; ObjectID = "1YA-ax-WPW"; */
+"1YA-ax-WPW.normalTitle" = "＋";
+
+/* Class = "UIButton"; normalTitle = "后序LRN"; ObjectID = "BoM-Gy-lKU"; */
+"BoM-Gy-lKU.normalTitle" = "后序LRN";
+
+/* Class = "UIButton"; normalTitle = "前序LNR"; ObjectID = "GEW-fd-4Qr"; */
+"GEW-fd-4Qr.normalTitle" = "前序LNR";
+
+/* Class = "UIButton"; normalTitle = "中序NLR"; ObjectID = "IOx-kE-uO6"; */
+"IOx-kE-uO6.normalTitle" = "中序NLR";
+
+/* Class = "UILabel"; text = "website"; ObjectID = "Lf5-G7-9hD"; */
+"Lf5-G7-9hD.text" = "website";
+
+/* Class = "UILabel"; text = "zengbao.wang make"; ObjectID = "N6B-aE-LuW"; */
+"N6B-aE-LuW.text" = "zengbao.wang make";
+
+/* Class = "UILabel"; text = "wechat"; ObjectID = "Wa0-A7-bLu"; */
+"Wa0-A7-bLu.text" = "wechat";
+
+/* Class = "UITextField"; placeholder = "nodeName"; ObjectID = "ZSA-HF-6aN"; */
+"ZSA-HF-6aN.placeholder" = "nodeName";
+
+/* Class = "UILabel"; text = "source code"; ObjectID = "qeL-FA-43G"; */
+"qeL-FA-43G.text" = "source code";
+
+/* Class = "UILabel"; text = "contact"; ObjectID = "wFS-XW-4z3"; */
+"wFS-XW-4z3.text" = "contact";

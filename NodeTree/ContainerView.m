@@ -17,18 +17,13 @@
     // Drawing code
     if ([self.lines count] > 0) {
         self.cgCRF =UIGraphicsGetCurrentContext();
-        CGContextSetRGBStrokeColor(self.cgCRF, 0, 1.0, 0, 1.0);
+        CGContextSetRGBStrokeColor(self.cgCRF, 0, 1, 0, 1.0);
         CGContextSetLineWidth(self.cgCRF, 2);
         for (Line* line in self.lines) {
             CGContextMoveToPoint(self.cgCRF, line.start.x, line.start.y);
             CGContextAddLineToPoint(self.cgCRF, line.end.x,line.end.y);
             CGContextStrokePath(self.cgCRF);
         }
-        //    CGContextMoveToPoint(self.cgCRF, 0, 0);
-        //    CGContextAddLineToPoint(self.cgCRF, 100, 100);
-//        CGContextSetLineCap(self.cgCRF, kCGLineCapRound);
-//        CGContextSetLineJoin(self.cgCRF, kCGLineJoinRound);
-
     }
 }
 
@@ -36,15 +31,6 @@
 {
     Line* l = [Line createLineFrom:startPoint to:endPoint];
     [self.lines addObject:l];
-//    [self drawRect:CGRectMake(0, 0, 0, 0)];
-//    CGContextMoveToPoint(self.cgCRF, startPoint.x, startPoint.y);
-//    CGContextAddLineToPoint(self.cgCRF, endPoint.x, endPoint.y);
-//    
-//    CGContextSetRGBStrokeColor(self.cgCRF, 0, 1.0, 0, 1.0);
-//    CGContextSetLineWidth(self.cgCRF, 15);
-//    CGContextSetLineCap(self.cgCRF, kCGLineCapRound);
-//    CGContextSetLineJoin(self.cgCRF, kCGLineJoinRound);
-//    CGContextStrokePath(self.cgCRF);
 }
 
 - (NSMutableArray*)lines
